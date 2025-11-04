@@ -1,11 +1,14 @@
-import { StrapiImage } from "@/components/strapi-image";
-import { formatDate, getArticles, STRAPI_ASSET_URL } from "@/lib/utils";
+import { getStrapiMedia, StrapiImage } from "@/components/strapi-image";
+import { formatDate, getArticles } from "@/lib/utils";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { cache } from "react";
+
+const cachedArticles = cache(getArticles);
 
 export default async function Home() {
-  const article = await getArticles().then((articles) => articles[0]);
+  const article = await cachedArticles().then((articles) => articles[0]);
   return (
     <div className="px-8 lg:px-16 space-y-20">
       {/* Hero Section */}
@@ -16,8 +19,8 @@ export default async function Home() {
         >
           <div className="">
             {article.cover?.url ? (
-              <img
-                src={`${STRAPI_ASSET_URL}${article.cover.url}`}
+              <StrapiImage
+                src={`${article.cover.url}`}
                 alt={article.cover.alternativeText || "Cover Image"}
                 height="1200"
                 width="1200"
@@ -44,16 +47,11 @@ export default async function Home() {
               </p>
             </div>
             <div className="flex space-x-2 items-center  mt-6">
-              {/* <img
-                src={`${STRAPI_ASSET_URL}${article.author.avatar.url}`}
-                alt={article.author.avatar.alternativeText || "Author Avatar"}
-                width={20}
-                height={20}
-                className="rounded-full h-5 w-5"
-              /> */}
               <Avatar>
-                <AvatarImage src={`${STRAPI_ASSET_URL}${article.author.avatar.url}`} />
-                <AvatarFallback>{article.author.avatar.alternativeText}</AvatarFallback>
+                <AvatarImage
+                  src={`${getStrapiMedia(article.author.avatar.url)}`}
+                />
+                <AvatarFallback>{article.author.name.charAt(0)}</AvatarFallback>
               </Avatar>
               <p className="text-sm font-normal text-muted-foreground">
                 {article.author.name}

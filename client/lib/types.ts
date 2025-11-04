@@ -84,12 +84,6 @@ export interface Category {
   articles: Article[];
 }
 
-export interface CategoryProps {
-  title: string;
-  href: string;
-  description: string;
-}
-
 export type Block = RichTextBlock | QuoteBlock | MediaBlock | SliderBlock;
 
 export interface RichTextBlock {

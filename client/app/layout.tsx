@@ -5,6 +5,8 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { NavBarWrapper } from "@/lib/client-side-wrappers";
 import Footer from "@/components/footer";
 import { getGlobalData } from "@/lib/utils";
+import { getStrapiMedia } from "@/components/strapi-image";
+import NextTopLoader from "nextjs-toploader";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,31 +21,23 @@ const geistMono = Geist_Mono({
 export async function generateMetadata(): Promise<Metadata> {
   const global = await getGlobalData();
   const seo = global.defaultSeo;
-  const faviconUrl = global.favicon.url;
+  const faviconUrl = getStrapiMedia(global.favicon.url);
   return {
     title: {
-      default: seo.metaTitle || "My Site",
-      template: `%s | ${seo.metaTitle || "My Site"}`,
+      default: `${global.siteName} | ${seo.metaTitle}`,
+      template: `%s | ${seo.metaTitle}`,
     },
     description: seo.metaDescription,
     // keywords: seo?.keywords,
     icons: {
-      icon: faviconUrl
-        ? `${process.env.NEXT_PUBLIC_STRAPI_API_URL}${faviconUrl}`
-        : "/favicon.ico",
-      shortcut: faviconUrl
-        ? `${process.env.NEXT_PUBLIC_STRAPI_API_URL}${faviconUrl}`
-        : "/favicon.ico",
-      apple: faviconUrl
-        ? `${process.env.NEXT_PUBLIC_STRAPI_API_URL}${faviconUrl}`
-        : "/apple-touch-icon.png",
+      icon: `${faviconUrl}`,
+      shortcut: `${faviconUrl}`,
+      apple: `${faviconUrl}`,
     },
     openGraph: {
       title: seo.metaTitle,
       description: seo.metaDescription,
-      images: seo.shareImage.url
-        ? [`${process.env.NEXT_PUBLIC_STRAPI_API_URL}${seo.shareImage.url}`]
-        : [],
+      images: [`${getStrapiMedia(seo.shareImage.url)}`],
     },
     twitter: {
       card: "summary_large_image",
@@ -69,6 +63,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <NextTopLoader color="var(--primary)" showSpinner={false} />
           <NavBarWrapper />
           <main>{children}</main>
           <Footer />

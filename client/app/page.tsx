@@ -1,49 +1,68 @@
 import { getStrapiMedia, StrapiImage } from "@/components/strapi-image";
-import { formatDate, getArticles } from "@/lib/utils";
+import { formatDate, getArticles, shimmerPlaceholder } from "@/lib/utils";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { cache } from "react";
+import {
+  Empty,
+  EmptyContent,
+  EmptyDescription,
+  EmptyMedia,
+  EmptyTitle,
+} from "@/components/ui/empty";
+import { X } from "lucide-react";
 
 const cachedArticles = cache(getArticles);
 
 export default async function Home() {
-  const article = await cachedArticles().then((articles) => articles[0]);
+  const article = await cachedArticles().then((articles) => articles.articles[0]);
   return (
     <div className="px-8 lg:px-16 space-y-20">
       {/* Hero Section */}
       <section className="my-10">
         <Link
           className="grid grid-cols-1 md:grid-cols-2 rounded-3xl group border border-transparent hover:border-border w-full hover:bg-muted overflow-hidden hover:scale-[1.02] transition duration-200 h-[calc(100vh-8rem)]"
-          href={`/blog/${article.slug}`}
+          href={`/blogpost/${article.slug}`}
         >
-          <div className="">
+          <div className="relative">
             {article.cover?.url ? (
               <StrapiImage
                 src={`${article.cover.url}`}
                 alt={article.cover.alternativeText || "Cover Image"}
-                height="1200"
-                width="1200"
+                fill
                 className="h-full object-cover object-top w-full rounded-3xl"
+                placeholder={shimmerPlaceholder(
+                  article.cover.width,
+                  article.cover.height
+                )}
               />
             ) : (
-              <div className="h-full flex items-center justify-center group-hover:bg-muted">
-                {/* <Logo /> */}
-              </div>
+              <Empty className="from-muted/50 to-background h-full bg-linear-to-b from-30% rounded-3xl">
+                <EmptyContent>
+                  <EmptyMedia variant="icon">
+                    <X />
+                  </EmptyMedia>
+                  <EmptyTitle>No Image Found</EmptyTitle>
+                  <EmptyDescription>
+                    We are cooking something amazing for you.
+                  </EmptyDescription>
+                </EmptyContent>
+              </Empty>
             )}
           </div>
           <div className="p-4 md:p-8 group-hover:bg-muted flex flex-col justify-between">
             <div>
               <div className="flex gap-4 flex-wrap mb-4">
                 <Badge variant={"outline"} className="px-4 py-2 capitalize">
-                  {article.category.name}
+                  {article?.category.name}
                 </Badge>
               </div>
               <p className="text-lg md:text-4xl font-bold mb-4">
-                {article.title}
+                {article?.title}
               </p>
               <p className="text-left text-base md:text-xl mt-2 text-muted-foreground">
-                {article.description}
+                {article?.description}
               </p>
             </div>
             <div className="flex space-x-2 items-center  mt-6">

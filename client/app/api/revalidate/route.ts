@@ -22,7 +22,7 @@ export async function POST(request: NextRequest) {
     if (model === "article") {
       if (entry?.slug) {
         revalidatePath(`/blog/${entry.slug}`);
-        revalidateTag(`${entry.slug}`, "max");
+        revalidateTag(`article-${entry.slug}`, "max");
         revalidateTag(`articles`, "max");
       }
     }
@@ -30,7 +30,7 @@ export async function POST(request: NextRequest) {
     if (model === "category") {
       if (entry?.slug) {
         revalidatePath(`/category/${entry.slug}`);
-        revalidateTag(`${entry.slug}`, "max");
+        revalidateTag(`category-${entry.slug}`, "max");
         revalidateTag(`categories`, "max");
       }
     }

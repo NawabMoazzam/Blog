@@ -21,6 +21,9 @@ export function StrapiImage({
     <Image
       src={imageUrl}
       alt={alt || "No alt text provided."}
+      loading="lazy"
+      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+      quality={75}
       className={className}
       {...rest}
     />

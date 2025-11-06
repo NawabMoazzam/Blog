@@ -26,7 +26,16 @@ export interface Global {
       width: number;
       height: number;
       url: string;
-    }
+    };
+  };
+}
+
+export interface Meta {
+  pagination: {
+    page: number;
+    pageSize: number;
+    pageCount: number;
+    total: number;
   };
 }
 
@@ -45,6 +54,8 @@ export interface Article {
     name: string;
     alternativeText: string;
     url: string;
+    width: number;
+    height: number;
   };
   category: {
     id: number;

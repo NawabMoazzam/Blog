@@ -13,10 +13,12 @@
   "pluginOptions": {},
   "attributes": {
     "name": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "slug": {
-      "type": "uid"
+      "type": "uid",
+      "required": true
     },
     "articles": {
       "type": "relation",
@@ -25,7 +27,8 @@
       "mappedBy": "category"
     },
     "description": {
-      "type": "text"
+      "type": "text",
+      "required": true
     }
   }
 }

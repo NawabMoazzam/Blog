@@ -7,7 +7,7 @@ import { Button } from "./ui/button";
 export default function BackButton() {
   const router = useRouter();
   return (
-    <div className="flex justify-between items-center px-2 py-8">
+    <div className="flex justify-between items-center px-2 pb-2">
       <Button
         variant={"ghost"}
         onClick={() => {

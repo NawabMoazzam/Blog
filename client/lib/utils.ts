@@ -1,6 +1,6 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
-import { Article, Category, Global } from "./types";
+import { Article, Category, Global, Meta } from "./types";
 
 export const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_API_URL!;
 export const STRAPI_ASSET_URL = process.env.NEXT_PUBLIC_ASSET_URL!;
@@ -15,7 +15,7 @@ export const navItems = [
   },
   {
     name: "Blog",
-    link: "/blog",
+    link: "/blogs/1",
   },
   {
     name: "About",
@@ -63,10 +63,13 @@ export async function getGlobalData(): Promise<Global> {
   }
 }
 
-export async function getArticles(): Promise<Article[]> {
+export async function getArticles(page: number = 1): Promise<{
+  articles: Article[];
+  meta: Meta;
+}> {
   try {
     const response = await fetch(
-      `${STRAPI_URL}/api/articles?&populate[0]=cover&populate[1]=category&populate[3]=author.avatar&sort=createdAt:desc`,
+      `${STRAPI_URL}/api/articles?&populate[0]=cover&populate[1]=category&populate[3]=author.avatar&sort=createdAt:desc&pagination[pageSize]=1&pagination[page]=${page}`,
       {
         cache: "force-cache",
         next: {
@@ -80,9 +83,9 @@ export async function getArticles(): Promise<Article[]> {
       throw new Error("Failed to fetch articles");
     }
 
-    const { data } = await response.json();
+    const { data, meta } = await response.json();
     const articles: Article[] = data;
-    return articles;
+    return { articles, meta };
   } catch (error) {
     console.error("Error fetching articles:", error);
     throw error;
@@ -96,7 +99,7 @@ export async function getArticleBySlug(slug: string): Promise<Article> {
       {
         cache: "force-cache",
         next: {
-          tags: [`${slug}`],
+          tags: [`article-${slug}`],
           revalidate: false,
         },
       }
@@ -140,4 +143,50 @@ export async function getCategories(): Promise<Category[]> {
     console.error("Error fetching categories:", error);
     throw error;
   }
+}
+
+export async function getCategoryBySlug(slug: string): Promise<Category> {
+  try {
+    const response = await fetch(
+      `${STRAPI_URL}/api/categories?filters[slug][$eq]=${slug}&populate[articles][populate]=*`,
+      {
+        cache: "force-cache",
+        next: {
+          tags: [`category-${slug}`],
+          revalidate: false,
+        },
+      }
+    );
+    if (!response.ok) {
+      throw new Error("Failed to fetch category");
+    }
+    const { data } = await response.json();
+    const category = data[0] as Category;
+    return category;
+  } catch (error) {
+    console.error("Error fetching category:", error);
+    throw error;
+  }
+}
+
+export function shimmerPlaceholder(width: number, height: number) {
+  const shimmer = (w: number, h: number) => `
+  <svg width="${w}" height="${h}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+      <linearGradient id="g">
+        <stop stop-color="#333" offset="20%" />
+        <stop stop-color="#222" offset="50%" />
+        <stop stop-color="#333" offset="70%" />
+      </linearGradient>
+    </defs>
+    <rect width="${w}" height="${h}" fill="#333" />
+    <rect id="r" width="${w}" height="${h}" fill="url(#g)" />
+    <animate xlink:href="#r" attributeName="x" from="-${w}" to="${w}" dur="1s" repeatCount="indefinite"  />
+  </svg>`;
+
+  const toBase64 = (str: string) =>
+    typeof window === "undefined"
+      ? Buffer.from(str).toString("base64")
+      : window.btoa(str);
+  return `data:image/svg+xml;base64,${toBase64(shimmer(width, height))}`;
 }

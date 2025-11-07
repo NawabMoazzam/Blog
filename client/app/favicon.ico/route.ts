@@ -2,21 +2,21 @@ import { getStrapiMedia } from "@/components/strapi-image";
 import { getGlobalData } from "@/lib/utils";
 import { NextResponse } from "next/server";
 
-export const dynamic = 'force-dynamic'
+export const dynamic = "force-dynamic";
 
 export async function GET() {
   try {
     const global = await getGlobalData();
-    const faviconUrl = global.favicon.url;
+    const faviconUrl = global.favicon?.url; //https://jolly-flame-2138b8d190.media.strapiapp.com/favicon_f7f3301f9d.png
 
     if (!faviconUrl) {
       // Fallback to default favicon
-      return new NextResponse(null, { status: 404 });
+      const defaultFaviconUrl = "/favicon.ico";
+      return NextResponse.redirect(defaultFaviconUrl);
+      // return new NextResponse(null, { status: 404 });
     }
 
-    const faviconResponse = await fetch(
-      `${getStrapiMedia(faviconUrl)}`
-    );
+    const faviconResponse = await fetch(`${faviconUrl}`);
 
     const faviconBuffer = await faviconResponse.arrayBuffer();
 

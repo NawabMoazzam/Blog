@@ -30,13 +30,7 @@ export default function Slider({ data }: { data: SliderBlock }) {
     <div className="my-8 relative">
       <div className="relative w-full h-96 rounded-lg overflow-hidden">
         <StrapiImage
-          src={
-            files[currentIndex].url ||
-            "/placeholder.svg?height=600&width=1200&query=slider"
-          }
-          alt={
-            files[currentIndex].alternativeText || `Slide ${currentIndex + 1}`
-          }
+          image={files[currentIndex]}
           fill
           className="object-cover"
         />

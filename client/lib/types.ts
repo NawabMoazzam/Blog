@@ -53,9 +53,14 @@ export interface Article {
     documentId: string;
     name: string;
     alternativeText: string;
-    url: string;
+    caption: string;
     width: number;
     height: number;
+    size: number;
+    url: string;
+    createdAt: string;
+    updatedAt: string;
+    publishedAt: string;
   };
   category: {
     id: number;
@@ -116,10 +121,16 @@ export interface MediaBlock {
   file: {
     id: number;
     documentId: string;
-    url: string;
+    name: string;
     alternativeText: string;
-    width?: number;
-    height?: number;
+    caption: string;
+    width: number;
+    height: number;
+    size: number;
+    url: string;
+    createdAt: string;
+    updatedAt: string;
+    publishedAt: string;
   };
 }
 
@@ -130,7 +141,14 @@ export interface SliderBlock {
     id: number;
     documentId: string;
     name: string;
-    url: string;
     alternativeText: string;
+    caption: string;
+    width: number;
+    height: number;
+    size: number;
+    url: string;
+    createdAt: string;
+    updatedAt: string;
+    publishedAt: string;
   }[];
 }

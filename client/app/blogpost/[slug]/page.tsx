@@ -1,11 +1,12 @@
-import { getStrapiMedia, StrapiImage } from "@/components/strapi-image";
+import { StrapiImage } from "@/components/strapi-image";
 import BlockRenderer from "@/components/block-renderer";
-import { getArticleBySlug, STRAPI_URL } from "@/lib/utils";
+import { getArticleBySlug, getStrapiMedia } from "@/lib/utils";
 import { formatDate } from "@/lib/utils";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { cache } from "react";
 import { Metadata } from "next";
 import BackButton from "@/components/back-button";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -40,14 +41,13 @@ export default async function BlogPostPage({ params }: Props) {
   return (
     <div className="m-8 lg:m-16">
       <BackButton />
-      <div className="w-full mx-auto">
+      <AspectRatio ratio={16 / 6} className="relative w-full mx-auto">
         {article?.cover ? (
           <StrapiImage
-            src={`${article.cover.url}`}
-            height={800}
-            width={800}
-            className="h-40 md:h-96 w-full aspect-square object-cover rounded-3xl mask-[radial-gradient(circle,white,transparent)]"
-            alt={article.cover.alternativeText || "Cover Image"}
+            image={article.cover}
+            fill
+            priority
+            className="rounded-3xl mask-[radial-gradient(circle,white,transparent)]"
           />
         ) : (
           <div className="h-40 md:h-96 w-full aspect-squace rounded-3xl shadow-derek bg-neutral-900 flex items-center justify-center">
@@ -55,7 +55,7 @@ export default async function BlogPostPage({ params }: Props) {
             <span className="text-muted-foreground">No Cover Image</span>
           </div>
         )}
-      </div>
+      </AspectRatio>
       <div className="xl:relative">
         <div className="mx-auto max-w-2xl">
           <article className="pb-8 pt-8">
@@ -82,6 +82,7 @@ export default async function BlogPostPage({ params }: Props) {
                 <Avatar>
                   <AvatarImage
                     src={`${getStrapiMedia(article.author.avatar.url)}`}
+                    alt=""
                   />
                   <AvatarFallback>
                     {article.author.name.charAt(0)}

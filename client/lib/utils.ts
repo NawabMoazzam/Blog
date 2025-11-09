@@ -1,6 +1,7 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { Article, Category, Global, Meta } from "./types";
+import { PlaceholderValue } from "next/dist/shared/lib/get-img-props";
 
 export const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_API_URL!;
 export const STRAPI_ASSET_URL = process.env.NEXT_PUBLIC_ASSET_URL!;
@@ -29,6 +30,13 @@ export const navItems = [
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
+}
+
+export function getStrapiMedia(url: string | null) {
+  if (url == null) return null;
+  if (url.startsWith("data:")) return url;
+  if (url.startsWith("http") || url.startsWith("//")) return url;
+  return STRAPI_ASSET_URL + url;
 }
 
 export function formatDate(dateString: string): string {
@@ -169,7 +177,7 @@ export async function getCategoryBySlug(slug: string): Promise<Category> {
   }
 }
 
-export function shimmerPlaceholder(width: number, height: number) {
+export function shimmerPlaceholder(width: number, height: number): PlaceholderValue {
   const shimmer = (w: number, h: number) => `
   <svg width="${w}" height="${h}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <defs>

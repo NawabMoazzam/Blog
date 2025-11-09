@@ -1,4 +1,4 @@
-import { getStrapiMedia, StrapiImage } from "@/components/strapi-image";
+import { StrapiImage } from "@/components/strapi-image";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { getCategories, shimmerPlaceholder } from "@/lib/utils";
 import Link from "next/link";
@@ -48,21 +48,9 @@ export default async function CategoryPage() {
                   >
                     {category.articles.length > 0 ? (
                       <StrapiImage
-                        src={
-                          getStrapiMedia(
-                            category.articles[0].cover.url
-                          ) as string
-                        }
-                        alt={
-                          category.articles[0].cover.alternativeText ||
-                          "Cover Image"
-                        }
+                        image={category.articles[0].cover}
                         fill
-                        className="h-full object-cover object-top w-full rounded-3xl"
-                        placeholder={shimmerPlaceholder(
-                          category.articles[0].cover.width,
-                          category.articles[0].cover.height
-                        )}
+                        className="rounded-3xl"
                       />
                     ) : (
                       <Empty className="from-muted/50 to-background h-full bg-linear-to-b from-30% rounded-3xl">

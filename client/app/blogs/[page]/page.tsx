@@ -1,9 +1,9 @@
-import { getArticles, shimmerPlaceholder } from "@/lib/utils";
+import { getArticles } from "@/lib/utils";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import BackButton from "@/components/back-button";
 import { X } from "lucide-react";
-import { getStrapiMedia, StrapiImage } from "@/components/strapi-image";
+import { StrapiImage } from "@/components/strapi-image";
 import Link from "next/link";
 import {
   Empty,
@@ -48,14 +48,9 @@ export default async function BlogsPage({ params }: Props) {
                 <AspectRatio ratio={16 / 9} className="rounded-3xl">
                   {article?.cover ? (
                     <StrapiImage
-                      src={getStrapiMedia(article.cover.url) as string}
-                      alt={article.cover.alternativeText || "Cover Image"}
+                      image={article.cover}
                       fill
-                      className="h-full object-cover object-top w-full rounded-3xl"
-                      placeholder={shimmerPlaceholder(
-                        article.cover.width,
-                        article.cover.height
-                      )}
+                      className="rounded-3xl"
                     />
                   ) : (
                     <Empty className="from-muted/50 to-background h-full bg-linear-to-b from-30% rounded-3xl">

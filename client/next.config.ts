@@ -14,7 +14,6 @@ const nextConfig: NextConfig = {
         hostname: 'jolly-flame-2138b8d190.media.strapiapp.com',
       },
     ],
-    unoptimized: true,
   }
 };
 

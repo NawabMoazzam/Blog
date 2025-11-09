@@ -1,38 +1,92 @@
 import Image from "next/image";
-import { STRAPI_ASSET_URL } from "@/lib/utils";
+import { getStrapiMedia, shimmerPlaceholder } from "@/lib/utils";
+import { PlaceholderValue } from "next/dist/shared/lib/get-img-props";
 
-interface StrapiImageProps {
-  src: string;
-  alt: string | null;
+interface StrapiImage {
+  id: number;
+  documentId: string;
+  name: string;
+  alternativeText: string;
+  caption: string;
+  width: number;
+  height: number;
+  size: number;
+  url: string;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+}
+
+interface OptimizedStrapiImageProps {
+  image: StrapiImage;
+  priority?: boolean;
+  fill?: boolean;
   className?: string;
-  [key: string]: string | number | boolean | undefined | null;
+  sizes?: string;
+  quality?: number;
+  loading?: "lazy" | "eager";
+  alt?: string;
+  decoding?: "auto" | "async" | "sync";
+  showCaption?: boolean;
+  placeholder?: PlaceholderValue;
 }
 
 export function StrapiImage({
-  src,
+  image,
+  priority = false,
+  fill = false,
+  className = "",
+  sizes = "(max-width: 480px) 100vw, (max-width: 768px) 75vw, (max-width: 1200px) 50vw, 33vw",
+  quality = 75,
+  loading = priority ? "eager" : "lazy",
   alt,
-  className,
-  ...rest
-}: Readonly<StrapiImageProps>) {
-  const imageUrl = getStrapiMedia(src);
-  if (!imageUrl) return null;
+  decoding = "async",
+  showCaption = false,
+  placeholder = shimmerPlaceholder(image.width, image.height)
+}: OptimizedStrapiImageProps) {
+  if (!image) {
+    return null;
+  }
 
-  return (
+  const imageSrc = getStrapiMedia(image.url) as string;
+  const imageAlt =
+    alt || image.alternativeText || image.name || "Article image";
+
+  // Common image props
+  const commonProps = {
+    src: imageSrc,
+    alt: imageAlt,
+    className,
+    sizes,
+    quality,
+    priority,
+    loading,
+    decoding,
+    placeholder
+  };
+
+  const imageElement = fill ? (
+    <Image {...commonProps} fill style={{ objectFit: "cover" }} />
+  ) : (
     <Image
-      src={imageUrl}
-      alt={alt || "No alt text provided."}
-      loading="lazy"
-      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-      quality={75}
-      className={className}
-      {...rest}
+      {...commonProps}
+      width={image.width}
+      height={image.height}
+      style={{
+        maxWidth: "100%",
+        height: "auto",
+        }}
     />
   );
-}
 
-export function getStrapiMedia(url: string | null) {
-  if (url == null) return null;
-  if (url.startsWith("data:")) return url;
-  if (url.startsWith("http") || url.startsWith("//")) return url;
-  return STRAPI_ASSET_URL + url;
+  return (
+    <figure>
+      {imageElement}
+      {showCaption && image?.caption && (
+        <figcaption className="mt-2 text-sm text-muted-foreground">
+          {image.caption}
+        </figcaption>
+      )}
+    </figure>
+  );
 }

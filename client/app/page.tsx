@@ -1,5 +1,5 @@
-import { getStrapiMedia, StrapiImage } from "@/components/strapi-image";
-import { formatDate, getArticles, shimmerPlaceholder } from "@/lib/utils";
+import { StrapiImage } from "@/components/strapi-image";
+import { formatDate, getArticles, shimmerPlaceholder, getStrapiMedia } from "@/lib/utils";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -12,11 +12,14 @@ import {
   EmptyTitle,
 } from "@/components/ui/empty";
 import { X } from "lucide-react";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 const cachedArticles = cache(getArticles);
 
 export default async function Home() {
-  const article = await cachedArticles().then((articles) => articles.articles[0]);
+  const article = await cachedArticles().then(
+    (articles) => articles.articles[0]
+  );
   return (
     <div className="px-8 lg:px-16 space-y-20">
       {/* Hero Section */}
@@ -25,17 +28,26 @@ export default async function Home() {
           className="grid grid-cols-1 md:grid-cols-2 rounded-3xl group border border-transparent hover:border-border w-full hover:bg-muted overflow-hidden hover:scale-[1.02] transition duration-200 h-[calc(100vh-8rem)]"
           href={`/blogpost/${article.slug}`}
         >
-          <div className="relative">
+          <AspectRatio ratio={16 / 9} className="relative rounded-3xl bg-muted">
             {article.cover?.url ? (
+              // <StrapiImage
+              //   src={`${article.cover.url}`}
+              //   alt={article.cover.alternativeText || "Cover Image"}
+              //   fill
+              //   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              //   className="h-full object-cover object-top w-full rounded-3xl"
+              //   placeholder={shimmerPlaceholder(
+              //     article.cover.width,
+              //     article.cover.height
+              //   )}
+              //   priority
+              // />
               <StrapiImage
-                src={`${article.cover.url}`}
-                alt={article.cover.alternativeText || "Cover Image"}
+                image={article.cover}
                 fill
-                className="h-full object-cover object-top w-full rounded-3xl"
-                placeholder={shimmerPlaceholder(
-                  article.cover.width,
-                  article.cover.height
-                )}
+                priority={true}
+                className="rounded-3xl"
+                showCaption={true}
               />
             ) : (
               <Empty className="from-muted/50 to-background h-full bg-linear-to-b from-30% rounded-3xl">
@@ -50,7 +62,7 @@ export default async function Home() {
                 </EmptyContent>
               </Empty>
             )}
-          </div>
+          </AspectRatio>
           <div className="p-4 md:p-8 group-hover:bg-muted flex flex-col justify-between">
             <div>
               <div className="flex gap-4 flex-wrap mb-4">
@@ -69,6 +81,7 @@ export default async function Home() {
               <Avatar>
                 <AvatarImage
                   src={`${getStrapiMedia(article.author.avatar.url)}`}
+                  alt={`${article.author.avatar.alternativeText}`}
                 />
                 <AvatarFallback>{article.author.name.charAt(0)}</AvatarFallback>
               </Avatar>

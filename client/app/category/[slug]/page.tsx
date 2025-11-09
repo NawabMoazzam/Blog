@@ -1,4 +1,4 @@
-import { getStrapiMedia, StrapiImage } from "@/components/strapi-image";
+import { StrapiImage } from "@/components/strapi-image";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { getCategoryBySlug } from "@/lib/utils";
@@ -35,10 +35,9 @@ export default async function CategoryPage({ params }: Props) {
                 <CardContent className="px-0">
                   <AspectRatio ratio={16 / 9} className="bg-muted rounded-3xl">
                     <StrapiImage
-                      src={getStrapiMedia(article.cover.url) as string}
-                      alt={article.cover.alternativeText || "Cover Image"}
+                      image={article.cover}
                       fill
-                      className="h-full object-cover object-top w-full rounded-3xl"
+                      className="rounded-3xl"
                     />
                   </AspectRatio>
                 </CardContent>

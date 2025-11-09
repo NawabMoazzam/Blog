@@ -4,8 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { NavBarWrapper } from "@/lib/client-side-wrappers";
 import Footer from "@/components/footer";
-import { getGlobalData } from "@/lib/utils";
-import { getStrapiMedia } from "@/components/strapi-image";
+import { getGlobalData, getStrapiMedia } from "@/lib/utils";
 import NextTopLoader from "nextjs-toploader";
 
 const geistSans = Geist({

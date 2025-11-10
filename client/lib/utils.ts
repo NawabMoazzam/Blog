@@ -11,10 +11,6 @@ export const navItems = [
     link: "/",
   },
   {
-    name: "Categories",
-    link: "/category",
-  },
-  {
     name: "Blog",
     link: "/blogs/1",
   },

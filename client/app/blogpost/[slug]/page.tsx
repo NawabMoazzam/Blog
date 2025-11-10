@@ -2,7 +2,6 @@ import { StrapiImage } from "@/components/strapi-image";
 import BlockRenderer from "@/components/block-renderer";
 import { getArticleBySlug, getStrapiMedia } from "@/lib/utils";
 import { formatDate } from "@/lib/utils";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { cache } from "react";
 import { Metadata } from "next";
 import BackButton from "@/components/back-button";
@@ -41,7 +40,7 @@ export default async function BlogPostPage({ params }: Props) {
   return (
     <div className="m-8 lg:m-16">
       <BackButton />
-      <AspectRatio ratio={16 / 6} className="relative w-full mx-auto">
+      <AspectRatio ratio={3 / 1} className="relative w-full mx-auto">
         {article?.cover ? (
           <StrapiImage
             image={article.cover}
@@ -78,16 +77,13 @@ export default async function BlogPostPage({ params }: Props) {
               ))}
             </div>
             <div className="flex space-x-2 items-center pt-12 border-t border-border mt-12">
-              <div className="flex space-x-2 items-center ">
-                <Avatar>
-                  <AvatarImage
-                    src={`${getStrapiMedia(article.author.avatar.url)}`}
-                    alt=""
+              <div className="flex space-x-2 gap-2 items-center ">
+                <div className="relative rounded-full mx-auto w-8 h-8">
+                  <StrapiImage
+                    image={article.author.avatar}
+                    className="rounded-full"
                   />
-                  <AvatarFallback>
-                    {article.author.name.charAt(0)}
-                  </AvatarFallback>
-                </Avatar>
+                </div>
                 <p className="text-sm font-normal text-muted-foreground">
                   {article.author.name}
                 </p>

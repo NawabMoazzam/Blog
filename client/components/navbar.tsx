@@ -24,7 +24,7 @@ export default function NavBar() {
         <NavbarLogo />
         <NavItems items={navItems} />
         <div className="flex items-center gap-4">
-          <NavbarButton variant="primary">Book a call</NavbarButton>
+          <NavbarButton href="https://api.whatsapp.com/send/?phone=923070494471&text=need_iptv_restream&type=phone_number&app_absent=0" variant="primary">Contact Now</NavbarButton>
         </div>
       </NavBody>
 

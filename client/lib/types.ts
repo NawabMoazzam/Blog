@@ -78,11 +78,17 @@ export interface Article {
     publishedAt: string;
     avatar: {
       id: number;
-      documentId: string;
-      url: string;
-      alternativeText: string;
-      width: number;
-      height: number;
+    documentId: string;
+    name: string;
+    alternativeText: string;
+    caption: string;
+    width: number;
+    height: number;
+    size: number;
+    url: string;
+    createdAt: string;
+    updatedAt: string;
+    publishedAt: string;
     };
   };
   blocks: Block[];

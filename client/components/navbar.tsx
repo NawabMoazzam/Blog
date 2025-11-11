@@ -24,7 +24,12 @@ export default function NavBar() {
         <NavbarLogo />
         <NavItems items={navItems} />
         <div className="flex items-center gap-4">
-          <NavbarButton href="https://api.whatsapp.com/send/?phone=923070494471&text=need_iptv_restream&type=phone_number&app_absent=0" variant="primary">Contact Now</NavbarButton>
+          <NavbarButton
+            href="https://api.whatsapp.com/send/?phone=923070494471&text=need_iptv_restream&type=phone_number&app_absent=0"
+            variant="primary"
+          >
+            Contact Now!
+          </NavbarButton>
         </div>
       </NavBody>
 
@@ -57,15 +62,9 @@ export default function NavBar() {
               onClick={() => setIsMobileMenuOpen(false)}
               variant="primary"
               className="w-full"
+              href="https://api.whatsapp.com/send/?phone=923070494471&text=need_iptv_restream&type=phone_number&app_absent=0"
             >
-              Login
-            </NavbarButton>
-            <NavbarButton
-              onClick={() => setIsMobileMenuOpen(false)}
-              variant="primary"
-              className="w-full"
-            >
-              Book a call
+              Contact Now!
             </NavbarButton>
           </div>
         </MobileNavMenu>

@@ -19,6 +19,10 @@ type Props = {
   params: Promise<{ page: number }>;
 };
 
+export async function generateStaticParams() {
+  return [];
+}
+
 export default async function BlogsPage({ params }: Props) {
   const page = (await params).page;
   const { articles, meta } = await getArticles(page);

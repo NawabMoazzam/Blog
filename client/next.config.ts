@@ -22,7 +22,7 @@ const nextConfig: NextConfig = {
   },
   // Enable experimental features
   experimental: {
-    optimizePackageImports: ['@react-three/fiber', '@react-three/drei'],
+    optimizePackageImports: ['three', 'three-globe', '@react-three/fiber', '@react-three/drei'],
   },
   // Configure Turbopack instead of webpack
   turbopack: {

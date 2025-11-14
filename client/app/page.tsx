@@ -5,6 +5,7 @@ import { Testimonials } from "@/components/testimonials";
 import { Button } from "@/components/ui/button";
 import { CheckCheck } from "lucide-react";
 import Link from "next/link";
+import { Suspense } from "react";
 import {
   Card,
   CardContent,
@@ -13,9 +14,10 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Skeleton } from "@/components/ui/skeleton";
 
 // Extract pricing card component
-function PricingCard({ card }: { card: typeof PRICING_CARDS[0] }) {
+function PricingCard({ card }: { card: (typeof PRICING_CARDS)[0] }) {
   return (
     <Card className="text-center group transition duration-200 hover:-translate-y-1">
       <CardHeader>
@@ -44,10 +46,7 @@ function PricingCard({ card }: { card: typeof PRICING_CARDS[0] }) {
           asChild
           className="w-full hover:-translate-y-0.5 transition duration-200"
         >
-          <Link
-            href={WHATSAPP_LINK}
-            prefetch={false}
-          >
+          <Link href={WHATSAPP_LINK} prefetch={false}>
             Order Now
           </Link>
         </Button>
@@ -58,7 +57,8 @@ function PricingCard({ card }: { card: typeof PRICING_CARDS[0] }) {
 
 export const metadata: Metadata = {
   title: "Best IPTV Service Provider - Worldwide Coverage",
-  description: "Get premium IPTV services with 9500+ channels, HD/4K quality, and affordable pricing plans.",
+  description:
+    "Get premium IPTV services with 9500+ channels, HD/4K quality, and affordable pricing plans.",
   openGraph: {
     title: "Best IPTV Service Provider - Worldwide Coverage",
     description: "Premium IPTV services with 9500+ channels and HD/4K quality",
@@ -69,17 +69,28 @@ export const metadata: Metadata = {
 export default async function Home() {
   return (
     <div className="px-8 space-y-8">
-      <section id="hero" className="h-screen">
-        <GlobeRenderer>
-          <h1 className="text-center text-xl md:text-4xl font-bold text-foreground">
-            We provide best services worldwide
-          </h1>
-          <p className="text-center text-base md:text-lg font-normal text-muted-foreground max-w-md mt-2 mx-auto">
-            Best IPTV Service Provider In the World. We provide access to a wide
-            range of live television channels, on-demand movies and TV shows,
-            with multiple quality options.
-          </p>
-        </GlobeRenderer>
+      <section className="flex flex-row items-center justify-center h-screen md:h-auto bg-background relative w-full">
+        <div className="max-w-7xl mx-auto w-full relative overflow-hidden h-full md:h-160 grid grid-cols-1 lg:grid-cols-2 items-center justify-center">
+          <div>
+            <h1 className="text-center text-xl md:text-4xl font-bold text-foreground">
+              We provide best services worldwide
+            </h1>
+            <p className="text-center text-base md:text-lg font-normal text-muted-foreground max-w-md mt-2 mx-auto">
+              Best IPTV Service Provider In the World. We provide access to a
+              wide range of live television channels, on-demand movies and TV
+              shows, with multiple quality options.
+            </p>
+          </div>
+          <Suspense
+            fallback={
+              <div className="h-full w-full flex items-center justify-center">
+                <Skeleton className="w-9/12 h-9/12 rounded-full" />
+              </div>
+            }
+          >
+            <GlobeRenderer />
+          </Suspense>
+        </div>
       </section>
 
       <section id="pricing">

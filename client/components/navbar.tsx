@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/resizable-navbar";
 import Link from "next/link";
 import { useState } from "react";
-import { navItems } from "@/lib/utils";
+import { navItems, WHATSAPP_LINK } from "@/lib/utils";
 
 export default function NavBar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -25,7 +25,7 @@ export default function NavBar() {
         <NavItems items={navItems} />
         <div className="flex items-center gap-4">
           <NavbarButton
-            href="https://api.whatsapp.com/send/?phone=923070494471&text=need_iptv_restream&type=phone_number&app_absent=0"
+            href={WHATSAPP_LINK}
             variant="default"
           >
             Contact Now!
@@ -52,7 +52,7 @@ export default function NavBar() {
               key={`mobile-link-${idx}`}
               href={item.link}
               onClick={() => setIsMobileMenuOpen(false)}
-              className="relative text-neutral-600 dark:text-neutral-300"
+              className="relative text-muted-foreground"
             >
               <span className="block">{item.name}</span>
             </Link>
@@ -62,7 +62,7 @@ export default function NavBar() {
               onClick={() => setIsMobileMenuOpen(false)}
               variant="default"
               className="w-full"
-              href="https://api.whatsapp.com/send/?phone=923070494471&text=need_iptv_restream&type=phone_number&app_absent=0"
+              href={WHATSAPP_LINK}
             >
               Contact Now!
             </NavbarButton>

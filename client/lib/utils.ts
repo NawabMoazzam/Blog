@@ -5,10 +5,21 @@ import { PlaceholderValue } from "next/dist/shared/lib/get-img-props";
 
 export const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_API_URL!;
 export const STRAPI_ASSET_URL = process.env.NEXT_PUBLIC_ASSET_URL!;
+export const gradientBG =
+  "text-transparent bg-clip-text bg-linear-to-r from-chart-2 via-chart-1 to-chart-3";
+export const gradientText =
+  "text-transparent bg-clip-text bg-linear-to-r from-chart-3 to-chart-2";
+export const btnGradient =
+  "bg-linear-to-r from-chart-3 to-chart-2 hover:from-chart-4 hover:to-chart-3 transition-all duration-300 shadow-lg shadow-ring/70 hover:shadow-ring hover:scale-105";
+
 export const navItems = [
   {
     name: "Home",
     link: "/",
+  },
+  {
+    name: "Services",
+    link: "/#services",
   },
   {
     name: "Pricing",
@@ -27,58 +38,9 @@ export const navItems = [
     link: "/blogs/1",
   },
 ];
-export const PRICING_CARDS = [
-  {
-    name: "Starter Pack",
-    desc: "50 Connections",
-    price: 99,
-    features: [
-      "50 Connections",
-      "9500+ Channels",
-      "International Channels",
-      "M3 U8 Playlis",
-      "SD /HD /FHD /4K",
-    ],
-  },
-  {
-    name: "Combo Pack",
-    desc: "100 Connections",
-    price: 190,
-    features: [
-      "100 Connections",
-      "9500+ Channels",
-      "International Channels",
-      "M3 U8 Playlis",
-      "SD /HD /FHD /4K",
-    ],
-  },
-  {
-    name: "Premium Pack",
-    desc: "200 Connections",
-    price: 370,
-    features: [
-      "200 Connections",
-      "9500+ Channels",
-      "International Channels",
-      "M3 U8 Playlis",
-      "SD /HD /FHD /4K",
-    ],
-  },
-  {
-    name: "Enterprise Pack",
-    desc: "500 Connections",
-    price: 700,
-    features: [
-      "500 Connections",
-      "9500+ Channels",
-      "International Channels",
-      "M3 U8 Playlis",
-      "SD /HD /FHD /4K",
-    ],
-  },
-];
-export const WHATSAPP_LINK = "https://api.whatsapp.com/send/?phone=923070494471&text=need_iptv_restream&type=phone_number&app_absent=0";
-export const GLOBE_COLORS = ["#06b6d4", "#3b82f6", "#6366f1"];
+
+export const WHATSAPP_LINK =
+  "https://api.whatsapp.com/send/?phone=923070494471&text=need_iptv_restream&type=phone_number&app_absent=0";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -229,7 +191,10 @@ export async function getCategoryBySlug(slug: string): Promise<Category> {
   }
 }
 
-export function shimmerPlaceholder(width: number, height: number): PlaceholderValue {
+export function shimmerPlaceholder(
+  width: number,
+  height: number
+): PlaceholderValue {
   const shimmer = (w: number, h: number) => `
   <svg width="${w}" height="${h}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <defs>

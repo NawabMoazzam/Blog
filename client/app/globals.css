@@ -130,10 +130,4 @@
   body {
     @apply bg-background text-foreground;
   }
-
-  html,
-  body {
-    cursor: url("/blue-pointer-cursor.webp"), pointer;
-    cursor: url("/blue-cursor.webp"), default;
-  }
 }

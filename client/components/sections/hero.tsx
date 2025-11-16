@@ -1,7 +1,7 @@
 import { ArrowRight, Play, Sparkles } from "lucide-react";
 import { Button } from "../ui/button";
 import Link from "next/link";
-import { WHATSAPP_LINK, gradientBG, gradientText } from "@/lib/utils";
+import { WHATSAPP_LINK, btnGradient, gradientBG, gradientText } from "@/lib/utils";
 import { Card, CardContent } from "@/components/ui/card";
 
 export default function HeroSection() {
@@ -50,17 +50,17 @@ export default function HeroSection() {
           <Button
             variant={"default"}
             asChild
-            className="h-14 w-40 bg-linear-to-r from-chart-3 to-chart-2 hover:from-chart-4 hover:to-chart-3 transition-all duration-300 flex items-center gap-2 shadow-lg shadow-ring/70 hover:shadow-ring hover:scale-105"
+            className={`h-14 w-50 flex items-center gap-2 ${btnGradient}`}
           >
             <Link href={WHATSAPP_LINK} className="group">
               Get Started Now
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Link>
           </Button>
-          <Button variant={"outline"} className="group h-14 w-40">
+          {/* <Button variant={"outline"} className="group h-14 w-40">
             <Play className="w-5 h-5" />
             Watch Demo
-          </Button>
+          </Button> */}
         </div>
 
         {/* Stats */}

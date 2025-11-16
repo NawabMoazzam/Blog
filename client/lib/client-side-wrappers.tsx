@@ -5,7 +5,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { cn } from "./utils";
 
 const ThemeToggle = dynamic(() => import("@/components/theme-toggle"), {
-  loading: () => <Skeleton className="h-9 w-24 rounded-full" />,
+  loading: () => <Skeleton className="h-[42px] w-[114px] rounded-full" />,
   ssr: false,
 });
 

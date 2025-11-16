@@ -1,4 +1,6 @@
+import { gradientText } from "@/lib/utils";
 import { Globe2, Shield, Tv, Zap } from "lucide-react";
+import { Card, CardContent } from "../ui/card";
 
 export default function AboutSection() {
   return (
@@ -7,7 +9,7 @@ export default function AboutSection() {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div>
             <h2 className="text-4xl sm:text-5xl font-bold mb-6">
-              About <span className="gradient-text">Our Platform</span>
+              About <span className={gradientText}>Our Platform</span>
             </h2>
             <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
               We are the world's leading IPTV restream service provider,
@@ -24,40 +26,50 @@ export default function AboutSection() {
             </p>
 
             <div className="grid grid-cols-2 gap-6">
-              <div className="bg-card backdrop-blur-sm border border-primary rounded-xl p-6">
-                <div className="text-3xl font-bold text-primary mb-2">
-                  5+ Years
-                </div>
-                <div className="text-muted-foreground">Industry Experience</div>
-              </div>
-              <div className="bg-card backdrop-blur-sm border border-primary rounded-xl p-6">
-                <div className="text-3xl font-bold text-primary mb-2">10K+</div>
-                <div className="text-muted-foreground">Happy Customers</div>
-              </div>
+              <Card className="border border-primary hover:bg-accent">
+                <CardContent>
+                  <div className="text-3xl font-bold text-primary mb-2">
+                    5+ Years
+                  </div>
+                  <div className="text-muted-foreground">
+                    Industry Experience
+                  </div>
+                </CardContent>
+              </Card>
+              <Card className="border border-primary hover:bg-accent">
+                <CardContent>
+                  <div className="text-3xl font-bold text-primary mb-2">
+                    10k+
+                  </div>
+                  <div className="text-muted-foreground">Happy Customers</div>
+                </CardContent>
+              </Card>
             </div>
           </div>
 
           <div className="relative">
-            <div className="aspect-square bg-card backdrop-blur-sm border border-primary rounded-3xl p-8 flex items-center justify-center">
-              <div className="grid grid-cols-2 gap-4 w-full">
+            <Card className="aspect-square border border-primary rounded-3xl flex items-center justify-center">
+              <CardContent className="grid grid-cols-2 gap-4 w-full">
                 {[
-                  { icon: <Tv />, label: "Live TV" },
-                  { icon: <Globe2 />, label: "Global" },
-                  { icon: <Zap />, label: "Fast" },
-                  { icon: <Shield />, label: "Secure" },
+                  { icon: <Tv className="w-12 h-12" />, label: "Live TV" },
+                  { icon: <Globe2 className="w-12 h-12" />, label: "Global" },
+                  { icon: <Zap className="w-12 h-12" />, label: "Fast" },
+                  { icon: <Shield className="w-12 h-12" />, label: "Secure" },
                 ].map((item, idx) => (
-                  <div
+                  <Card
                     key={idx}
-                    className="bg-card backdrop-blur-sm border border-primary rounded-2xl p-6 flex flex-col items-center justify-center hover:bg-accent transition-all duration-300 card-hover"
+                    className="border border-primary rounded-2xl hover:bg-accent transition-all duration-300"
                   >
-                    <div className="w-12 h-12 text-primary mb-3">
-                      {item.icon}
-                    </div>
-                    <div className="text-sm font-semibold">{item.label}</div>
-                  </div>
+                    <CardContent className="flex flex-col items-center justify-center ">
+                      <div className="w-12 h-12 text-primary mb-3">
+                        {item.icon}
+                      </div>
+                      <div className="text-sm font-semibold">{item.label}</div>
+                    </CardContent>
+                  </Card>
                 ))}
-              </div>
-            </div>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </div>

@@ -102,11 +102,10 @@ export default function Footer() {
               </Link>
             </div>
           </div>
-          <div className="grid grid-cols-3 gap-10 items-start mt-10 md:mt-0">
+          <div className="grid grid-cols-2 gap-10 items-start mt-10 md:mt-0">
             <LinkSection links={navItems} />
-            <LinkSection links={policyLinks} />
             <LinkSection links={socialmediaLinks} />
-            <ThemeToggleWrapper className="col-start-2" />
+            <ThemeToggleWrapper className="col-span-2 justify-self-center" />
           </div>
         </div>
       </div>

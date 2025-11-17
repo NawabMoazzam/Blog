@@ -13,7 +13,7 @@ import { IconBrandWhatsapp } from "@tabler/icons-react";
 
 export default function CTASection() {
   return (
-    <section id="contact" className="relative py-24 px-4 sm:px-6 lg:px-8">
+    <section id="contact" className="relative px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto text-center">
         <Card className="border border-primary rounded-3xl">
           <CardTitle className="text-4xl sm:text-5xl font-bold mb-6">
@@ -30,7 +30,12 @@ export default function CTASection() {
                 className={`h-14 w-max flex items-center gap-2 ${btnGradient}`}
               >
                 <Link href={WHATSAPP_LINK} className="group">
-                  <IconBrandWhatsapp className="w-14 h-14" />
+                  <IconBrandWhatsapp
+                    style={{
+                      height: "calc(var(--spacing) * 12)",
+                      width: "calc(var(--spacing) * 12)",
+                    }}
+                  />
                   Contact us on WhatsApp
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </Link>

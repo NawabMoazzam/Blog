@@ -23,7 +23,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const faviconUrl = getStrapiMedia(global.favicon.url);
   return {
     title: {
-      default: `${global.siteName} | ${seo.metaTitle}`,
+      default: `Home | ${seo.metaTitle}`,
       template: `%s | ${seo.metaTitle}`,
     },
     description: seo.metaDescription,

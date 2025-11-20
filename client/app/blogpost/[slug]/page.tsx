@@ -50,7 +50,7 @@ export default async function BlogPostPage({ params }: Props) {
   const article = await getArticle(slug);
 
   return (
-    <div className="m-8 lg:m-16">
+    <div className="my-16">
       <BackButton />
       <AspectRatio ratio={3 / 1} className="relative w-full mx-auto">
         {article?.cover ? (
@@ -58,7 +58,7 @@ export default async function BlogPostPage({ params }: Props) {
             image={article.cover}
             fill
             priority
-            className="rounded-3xl mask-[radial-gradient(circle,white,transparent)]"
+            className="rounded-3xl "
           />
         ) : (
           <div className="h-40 md:h-96 w-full aspect-squace rounded-3xl shadow-derek bg-neutral-900 flex items-center justify-center">

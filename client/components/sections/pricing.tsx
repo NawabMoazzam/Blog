@@ -14,12 +14,14 @@ import {
 const plans = [
   {
     name: "Starter Pack",
-    connections: "50",
-    price: "$99",
+    connections: 50,
+    price: "€95",
     features: [
       "50 Connections",
       "9500+ Channels",
       "International Channels",
+      "Channels Report Portal",
+      "Separate Categories Access",
       "M3U8 Playlist",
       "SD/HD/FHD/4K",
     ],
@@ -27,12 +29,14 @@ const plans = [
   },
   {
     name: "Combo Pack",
-    connections: "100",
-    price: "$190",
+    connections: 100,
+    price: "€180",
     features: [
       "100 Connections",
       "9500+ Channels",
       "International Channels",
+      "Channels Report Portal",
+      "Separate Categories Access",
       "M3U8 Playlist",
       "SD/HD/FHD/4K",
     ],
@@ -40,12 +44,14 @@ const plans = [
   },
   {
     name: "Premium Pack",
-    connections: "200",
-    price: "$370",
+    connections: 200,
+    price: "€350",
     features: [
       "200 Connections",
       "9500+ Channels",
       "International Channels",
+      "Channels Report Portal",
+      "Separate Categories Access",
       "M3U8 Playlist",
       "SD/HD/FHD/4K",
     ],
@@ -53,12 +59,14 @@ const plans = [
   },
   {
     name: "Enterprise Pack",
-    connections: "500",
-    price: "$700",
+    connections: 500,
+    price: "€650",
     features: [
       "500 Connections",
       "9500+ Channels",
       "International Channels",
+      "Channels Report Portal",
+      "Separate Categories Access",
       "M3U8 Playlist",
       "SD/HD/FHD/4K",
     ],
@@ -74,7 +82,7 @@ export default function PricingSection() {
             Choose Your <span className={gradientText}>Perfect Plan</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Flexible pricing options to match your streaming needs
+            Flexible pricing options to match your Restreaming needs
           </p>
         </div>
 
@@ -120,7 +128,8 @@ export default function PricingSection() {
               <CardFooter>
                 <Button variant={plan.popular ? "default" : "outline"} asChild>
                   <Link
-                    href={WHATSAPP_LINK}
+                    href={`https://wa.me/447411201496?text=Need%20${plan.connections}%20Connections`}
+                    target="_blank"
                     className={`block w-full font-semibold text-center transition-all duration-300 ${
                       plan.popular
                         ? `${btnGradient}`

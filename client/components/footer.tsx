@@ -1,6 +1,6 @@
 import { ThemeToggleWrapper } from "@/lib/client-side-wrappers";
 import Link from "next/link";
-import { navItems } from "@/lib/utils";
+import { navItems, WHATSAPP_LINK } from "@/lib/utils";
 import Image from "next/image";
 import { Shield, Users, Zap } from "lucide-react";
 
@@ -15,6 +15,7 @@ const LinkSection = ({
         key={link.name}
         className="text-muted-foreground hover:text-primary transition-colors inline-flex items-center gap-2 group"
         href={`${link.link}`}
+        target="_blank"
       >
         <span className="w-0 h-0.5 bg-primary transition-all group-hover:w-4"></span>
         {link.name}
@@ -30,9 +31,9 @@ const policyLinks = [
 ];
 
 const socialmediaLinks = [
-  { name: "Twitter", link: "https://twitter.com" },
-  { name: "Facebook", link: "https://facebook.com" },
-  { name: "LinkedIn", link: "https://linkedin.com" },
+  { name: "Instagram", link: "https://www.instagram.com/iptvrestreamvip/" },
+  { name: "Whatsapp", link: WHATSAPP_LINK },
+  { name: "Twitter / X", link: "https://x.com/iptv_restream" },
 ];
 
 export default function Footer() {
@@ -49,55 +50,16 @@ export default function Footer() {
               <span className="font-medium text-foreground">Startup</span>
             </Link>
             <div className="max-w-xs">
-              LaunchPad is a rapid content delivery platform that helps you
-              deliver content to your users in a fast and efficient way.
+              Our support team is available 24/7 to assist you. Whether it's day or night, you can reach out to us anytime through our contact channels. We’re committed to providing fast and helpful responses to all your questions or issues. Your satisfaction is our priority, and we're always here to help.
             </div>
-            <div className="mt-4">Copyright &copy; 2024 Strapi INC</div>
             <div className="mt-10">
               Designed and Developed by{" "}
               <Link
                 className="text-primary hover:underline"
-                href="https://aceternity.com"
+                href="https://nawabwebfolio.vercel.app/"
+                target="_blank"
               >
-                Aceternity
-              </Link>{" "}
-              &{" "}
-              <Link className="text-primary hover:underline" href="https://strapi.io">
-                Strapi
-              </Link>
-            </div>
-            <div className="mt-2">
-              built with{" "}
-              <Link className="text-primary hover:underline" href="https://strapi.io">
-                Strapi
-              </Link>
-              ,{" "}
-              <Link
-                className="text-primary hover:underline"
-                href="https://nextjs.org"
-              >
-                Next.js
-              </Link>
-              ,{" "}
-              <Link
-                className="text-primary hover:underline"
-                href="https://tailwindcss.com"
-              >
-                Tailwind CSS
-              </Link>
-              ,{" "}
-              <Link
-                className="text-primary hover:underline"
-                href="https://framer.com/motion"
-              >
-                Motion Animation Lib
-              </Link>
-              , and{" "}
-              <Link
-                className="text-primary hover:underline"
-                href="https://ui.aceternity.com"
-              >
-                Aceternity UI
+                Nawab Moazzam
               </Link>
             </div>
           </div>
@@ -110,7 +72,7 @@ export default function Footer() {
         <div className="py-8 mt-8 border-t">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-sm text-muted-foreground text-center md:text-left">
-              © {new Date().getFullYear()} IPTV Stream. All rights reserved.
+              &copy; Copyright {new Date().getFullYear()} <span className="text-primary font-bold">IPTV Restream Vip</span> | All rights reserved.
             </p>
             <div className="flex items-center gap-6 text-sm text-muted-foreground">
               <span className="flex items-center gap-2">

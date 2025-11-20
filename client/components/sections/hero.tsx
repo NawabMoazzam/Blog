@@ -30,20 +30,18 @@ export default function HeroSection() {
         <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 backdrop-blur-sm border border-primary rounded-full mb-8">
           <Sparkles className="w-4 h-4 text-primary" />
           <span className="text-sm text-muted-foreground">
-            Best IPTV Service Provider Worldwide
+            Best IPTV Restream Provider Worldwide
           </span>
         </div>
 
         <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-          <span className={gradientBG}>Stream the World</span>
+          <span className={gradientBG}>IPTV Restream</span>
           <br />
-          <span>at Your Fingertips</span>
+          <span>Channels Without Borders</span>
         </h1>
 
         <p className="text-lg sm:text-xl text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed">
-          Access 9500+ premium channels, on-demand content, and live television
-          from across the globe. Crystal-clear 4K streaming with
-          enterprise-grade reliability.
+          IPTV Restream Access 9500+ premium channels, on-demand content, and live television from across the globe. Most Reliable Internet Protocol TV Subscription Service Provider.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -52,7 +50,7 @@ export default function HeroSection() {
             asChild
             className={`h-14 w-50 flex items-center gap-2 ${btnGradient}`}
           >
-            <Link href={WHATSAPP_LINK} className="group">
+            <Link href={WHATSAPP_LINK} target="_blank" className="group">
               Get Started Now
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Link>

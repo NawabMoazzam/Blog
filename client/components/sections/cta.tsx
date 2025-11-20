@@ -29,7 +29,7 @@ export default function CTASection() {
                 asChild
                 className={`h-14 w-max flex items-center gap-2 ${btnGradient}`}
               >
-                <Link href={WHATSAPP_LINK} className="group">
+                <Link href={WHATSAPP_LINK} target="_blank" className="group">
                   <IconBrandWhatsapp
                     style={{
                       height: "calc(var(--spacing) * 12)",

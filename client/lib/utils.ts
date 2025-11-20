@@ -35,8 +35,7 @@ export const navItems = [
   },
 ];
 
-export const WHATSAPP_LINK =
-  "https://api.whatsapp.com/send/?phone=923070494471&text=need_iptv_restream&type=phone_number&app_absent=0";
+export const WHATSAPP_LINK = "https://wa.link/6gsmmo";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));

@@ -39,7 +39,7 @@ export default async function BlogsPage({ params }: Props) {
   const page = (await params).page;
   const { articles, meta } = await getAllArticles(page);
   return (
-    <div className="m-8 lg:m-16">
+    <div className="mx-8 my-16 lg:mx-16">
       <BackButton />
       <div className="w-full mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {articles.length <= 0 && (

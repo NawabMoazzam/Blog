@@ -26,6 +26,7 @@ export default function NavBar() {
         <div className="flex items-center gap-4">
           <NavbarButton
             href={WHATSAPP_LINK}
+            target="_blank"
             variant="default"
           >
             Contact Now!

@@ -15,10 +15,10 @@ const faqs = [
   {
     "@type": "Question",
     "@id": "#faq-1",
-    name: "What is the difference between IPTV reseller and restream services?",
+    name: "How to start with Restream?",
     acceptedAnswer: {
       "@type": "Answer",
-      text: "Restream is ideal if you already own a server with an IPTV panel and servers attached - you just need channels to add to your existing infrastructure. A reseller account is better if you're new to the IPTV business and want to earn with risk-free options without being certain about client acquisition. With a reseller account, you get a complete package including credits, panel access, and support to start your IPTV business immediately.",
+      text: "Contact us on WhatsApp to get your free trial. If you like the service, we’ll share the payment options. Once the payment is completed, we’ll get you started — all through WhatsApp.",
     },
   },
   {
@@ -27,43 +27,50 @@ const faqs = [
     name: "Can I get a free trial before purchasing an IPTV plan?",
     acceptedAnswer: {
       "@type": "Answer",
-      text: "Yes, we offer free trials so you can test our IPTV service quality before making any commitment. Simply contact us via WhatsApp and request a trial by clicking the Contact Now button on our website. Our team will set up your trial account within minutes, allowing you to experience our channel quality, server stability, and streaming performance firsthand.",
+      text: "Sure, simply contact us via WhatsApp and request a trial. Click on the Contact Us.",
     },
   },
   {
     "@type": "Question",
     "@id": "#faq-3",
-    name: "What are the terms and conditions for IPTV restreaming?",
+    name: "Which payment options are available?",
     acceptedAnswer: {
       "@type": "Answer",
-      text: "Our IPTV restreaming terms include: 1) Only add channels to your server infrastructure, not for direct sale to end clients. 2) Never exceed your allowed connections limit to maintain service quality. 3) Never share our direct connections publicly or sell them directly to customers. 4) Violation of these terms may result in permanent closure or blockage of your line without refund. These terms ensure service stability and protect all parties involved in the restreaming process.",
+      text: `We currently accept payments via PayPal, Skrill, and Crypto (including Bitcoin).
+Below are the details for purchasing a reseller account:
+1) PayPal: Use the Friends and Family option only
+2) Email: [email protected]
+3) Bitcoin (BTC): Contact us for the updated wallet address.
+4) Other Crypto: Contact us to get the updated wallet details for your preferred cryptocurrency.
+5) Skrill: Contact us for the updated payment email.
+If you need any help, feel free to message us anytime.`,
     },
   },
   {
     "@type": "Question",
     "@id": "#faq-4",
-    name: "How many channels are included in your IPTV service?",
+    name: "What is the difference between reseller and restream?",
     acceptedAnswer: {
       "@type": "Answer",
-      text: "Our IPTV service includes access to over 9500+ premium live TV channels from around the world, covering news, sports, entertainment, movies, documentaries, and more in multiple languages. We regularly update our channel lineup to include the latest additions and remove any non-working channels to ensure the best viewing experience for your customers.",
+      text: "Restream is suitable only if you already own a server — meaning you have your IPTV panel, connected servers, and everything running, and you just need channels. However, if you’re new to this business and want to earn from it — especially if you’re unsure whether clients will buy from you — then a reseller account is the best, risk-free option for you.",
     },
   },
   {
     "@type": "Question",
     "@id": "#faq-5",
-    name: "What streaming quality does your IPTV service support?",
+    name: "What are the terms and conditions of using restreaming?",
     acceptedAnswer: {
       "@type": "Answer",
-      text: "We support multiple streaming qualities including SD (Standard Definition), HD (High Definition), FHD (Full HD 1080p), and 4K Ultra HD resolution options for crystal-clear viewing experience. The streaming quality automatically adapts to your internet connection speed, ensuring smooth playback without buffering. Our adaptive bitrate technology delivers the best possible quality based on available bandwidth.",
+      text: "Please note the following important points: Add the service only to your server — do not sell directly to clients. Do not exceed the allowed number of connections. Never share our direct connections publicly or sell them directly. Any violation of these terms may result in permanent closure or blockage of your line.",
     },
   },
   {
     "@type": "Question",
     "@id": "#faq-6",
-    name: "What is your IPTV service uptime guarantee?",
+    name: "What to do after paying?",
     acceptedAnswer: {
       "@type": "Answer",
-      text: "We guarantee 99.9% uptime with enterprise-grade servers and infrastructure distributed across multiple data centers to ensure uninterrupted streaming service for our customers. Our redundant server architecture and 24/7 monitoring system automatically handle any technical issues, providing consistent reliability and minimal downtime for your IPTV business operations.",
+      text: "After making the payment, please confirm with us on WhatsApp or via email, and we’ll get back to you ASAP.",
     },
   },
 ];
@@ -156,6 +163,7 @@ export default function FAQs() {
               <Button variant={"default"} asChild>
                 <Link
                   href={WHATSAPP_LINK}
+                  target="_blank"
                   className={btnGradient}
                   aria-label="Contact support via WhatsApp"
                 >

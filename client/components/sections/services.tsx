@@ -55,7 +55,7 @@ export default function ServicesSection() {
             Why Choose <span className={gradientText}>Our Service</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Experience premium IPTV streaming with unmatched quality and
+            Experience premium IPTV Restreaming with unmatched quality and
             reliability
           </p>
         </div>

@@ -238,13 +238,11 @@ export const NavbarLogo = () => {
       className="relative z-20 mr-4 flex items-center space-x-2 px-2 py-1 text-sm font-normal text-foreground"
     >
       <Image
-        src="/logo-dark.png"
+        src="/Logo.svg"
         alt="logo"
-        width={30}
-        height={30}
-        className="invert dark:invert-0"
+        width={150}
+        height={45}
       />
-      <span className="font-medium text-foreground">Startup</span>
     </Link>
   );
 };

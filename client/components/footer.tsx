@@ -46,11 +46,14 @@ export default function Footer() {
               href={"/"}
               className="mr-4 md:flex items-center space-x-2 mb-4 relative"
             >
-              <Image src={"/logo-dark.png"} alt="Logo" width={30} height={30} />
-              <span className="font-medium text-foreground">Startup</span>
+              <Image src="/Logo.svg" alt="logo" width={150} height={45} />
             </Link>
             <div className="max-w-xs">
-              Our support team is available 24/7 to assist you. Whether it's day or night, you can reach out to us anytime through our contact channels. We’re committed to providing fast and helpful responses to all your questions or issues. Your satisfaction is our priority, and we're always here to help.
+              Our support team is available 24/7 to assist you. Whether it's day
+              or night, you can reach out to us anytime through our contact
+              channels. We’re committed to providing fast and helpful responses
+              to all your questions or issues. Your satisfaction is our
+              priority, and we're always here to help.
             </div>
             <div className="mt-10">
               Designed and Developed by{" "}
@@ -72,7 +75,13 @@ export default function Footer() {
         <div className="py-8 mt-8 border-t">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-sm text-muted-foreground text-center md:text-left">
-              &copy; Copyright {new Date().getFullYear()} <span className="text-primary font-bold">IPTV Restream Vip</span> | All rights reserved.
+              &copy; Copyright {new Date().getFullYear()}{" "}
+              <Link href={"/"}>
+                <span className="text-primary font-bold">
+                  IPTV Restream Vip
+                </span>{" "}
+              </Link>
+              | All rights reserved.
             </p>
             <div className="flex items-center gap-6 text-sm text-muted-foreground">
               <span className="flex items-center gap-2">

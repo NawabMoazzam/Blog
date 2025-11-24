@@ -52,23 +52,40 @@ export default async function BlogPostPage({ params }: Props) {
   return (
     <div className="my-16">
       <BackButton />
-      <AspectRatio ratio={3 / 1} className="relative w-full mx-auto">
-        {article?.cover ? (
-          <StrapiImage
-            image={article.cover}
-            fill
-            priority
-            className="rounded-3xl "
-          />
-        ) : (
-          <div className="h-40 md:h-96 w-full aspect-squace rounded-3xl shadow-derek bg-neutral-900 flex items-center justify-center">
-            {/* <Logo /> */}
-            <span className="text-muted-foreground">No Cover Image</span>
-          </div>
-        )}
-      </AspectRatio>
+      <div className="block md:hidden">
+        <AspectRatio ratio={16 / 9} className="relative w-full mx-auto">
+          {article?.cover ? (
+            <StrapiImage
+              image={article.cover}
+              fill
+              priority
+              className="rounded-3xl "
+            />
+          ) : (
+            <div className="h-40 md:h-96 w-full aspect-squace rounded-3xl shadow-derek bg-neutral-900 flex items-center justify-center">
+              <span className="text-muted-foreground">No Cover Image</span>
+            </div>
+          )}
+        </AspectRatio>
+      </div>
+      <div className="hidden md:block">
+        <AspectRatio ratio={3 / 1} className="relative w-full mx-auto">
+          {article?.cover ? (
+            <StrapiImage
+              image={article.cover}
+              fill
+              priority
+              className="rounded-3xl "
+            />
+          ) : (
+            <div className="h-40 md:h-96 w-full aspect-squace rounded-3xl shadow-derek bg-neutral-900 flex items-center justify-center">
+              <span className="text-muted-foreground">No Cover Image</span>
+            </div>
+          )}
+        </AspectRatio>
+      </div>
       <div className="xl:relative">
-        <div className="mx-auto max-w-2xl">
+        <div className="mx-8 md:mx-auto max-w-2xl">
           <article className="pb-8 pt-8">
             <div className="flex gap-4 flex-wrap ">
               {article?.category && (
